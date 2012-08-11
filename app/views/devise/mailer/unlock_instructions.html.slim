@@ -1,7 +1,7 @@
-p Hello #{@resource.email} !
+p #{devise.instructions.hello} #{@resource.email} !
 
-p Your account has been locked due to an excessive amount of unsuccessful sign in attempts.
+p= t "devise.instructions.lock_account_because_invalid_access_counts"
 
-p Click the link below to unlock your account:
+p= t "devise.instructions.click_link_below_to_unlick_account"
 
-p= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token)
+p= link_to t 'devise.instructions.unlock_my_account', unlock_url(@resource, :unlock_token => @resource.unlock_token)

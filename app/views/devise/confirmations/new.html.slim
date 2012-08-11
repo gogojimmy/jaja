@@ -9,6 +9,6 @@ h2 Resend confirmation instructions
     = f.email_field :email
 
   div
-    = f.submit "Resend confirmation instructions"
+    = f.submit I18n.t "devise.instructions.resend_confirmation_instructions"
 
 = render "devise/shared/links"
