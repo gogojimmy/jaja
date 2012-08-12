@@ -11,6 +11,7 @@ gem 'will_paginate'
 gem 'slim'
 gem 'simple_form'
 gem 'omniauth-facebook'
+gem 'exception_notification'
 
 # Gems used only for assets and not required
 # in production environments by default.

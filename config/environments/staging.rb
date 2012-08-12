@@ -67,3 +67,8 @@ BaseWithDevise::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'http://staging.babysworld.tw' }
 end
+
+Startup::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Exception Notifier - Staging] ",
+  :sender_address => %{"notifier" <admin@example.com>},
+  :exception_recipients => %w{jimmy@gogojimmy.net}
