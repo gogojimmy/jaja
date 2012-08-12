@@ -1,4 +1,5 @@
 zh_tw:
+  brand: ''
   will_paginate:
     previous_label: "&#8592; 上一頁"
     next_label: "下一頁 &#8594;"
