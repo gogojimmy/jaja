@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'will_paginate'
 gem 'slim'
+gem 'simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.
