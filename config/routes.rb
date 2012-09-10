@@ -1,12 +1,6 @@
-BaseWithDevise::Application.routes.draw do
+Jaja::Application.routes.draw do
   root :to => "welcome#index"
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, :skip => [:sessions], controllers: {omniauth_callbacks: "omniauth_callbacks"}
-  devise_scope :user do
-    get 'signin' => 'devise/sessions#new', :as => :new_user_session
-    post 'signin' => 'devise/sessions#create', :as => :user_session
-    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-  end
-  match 'signout', to: 'sessions#destroy', as: 'signout'
+  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

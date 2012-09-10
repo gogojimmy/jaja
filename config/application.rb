@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module BaseWithDevise
+module Jaja
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -67,5 +67,17 @@ module BaseWithDevise
 
     # Slim
     Slim::Engine.set_default_options :pretty => true
+
+    config.generators do |g|
+      g.stylesheets false
+      g.test_framework :rspec,
+        fixtures: true,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        controller_specs: true,
+        request_specs: true
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BaseWithDevise::Application.load_tasks
+Jaja::Application.load_tasks

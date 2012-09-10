@@ -29,3 +29,17 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'capistrano_colors'
 gem 'rvm-capistrano'
+
+group :developement, :test do
+  gem "faker"
+  gem "shoulda-matchers"
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem "guard-rspec"
+end
+
+group :test do
+  gem "capybara"
+  gem "database_cleaner"
+  gem "launchy"
+end
