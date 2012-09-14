@@ -8,7 +8,11 @@ Jaja::Application.routes.draw do
     delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :projects
+  resources :projects, :only => [:show]
+
+  namespace :admin do
+    resources :projects
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

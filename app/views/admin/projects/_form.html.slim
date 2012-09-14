@@ -1,0 +1,6 @@
+= simple_form_for([:admin, @project], :html => { :class => 'form-horizontal' }) do |f|
+  = f.input :name, :label => "主題名稱", :input_html => { :class => "span10" }
+  = f.input :description, :label => "描述", :input_html => { :class => "span10" }
+  = f.input :is_publish, :as => :radio_buttons, :label => "是否公開", :item_wrapper_class => 'inline'
+  .form-actions
+    = f.submit "儲存", :class => 'btn btn-primary'

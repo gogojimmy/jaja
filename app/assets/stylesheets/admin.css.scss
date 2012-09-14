@@ -9,12 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree ./common
  */
 
-@import "bootstrap/spacelab";
+@import "bootstrap/bootstrap";
+@import "admin/style";
 @import "compass";
-
-body {
-  padding-top: 50px;
-}

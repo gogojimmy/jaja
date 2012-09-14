@@ -1,0 +1,42 @@
+doctype html
+html lang="zh"
+head
+  title #{t('brand')} | #{@title}
+  = stylesheet_link_tag    "admin"
+  = javascript_include_tag "admin"
+  = csrf_meta_tags
+  meta name="viewport" content="width=device-width" initial-scale="1.0"
+  meta charset="UTF-8"
+  body
+    #maincontainer.no-sidebar
+      #contentwrapper
+        #contentcolumn
+          /! ** blue top navbar **
+          .blue.navbar.navbar-static.nomargin
+            .navbar-inner
+              .container
+                a.brand href="#" JaJa
+                ul.nav.pull-left
+                  li
+                    = link_to new_admin_project_path do
+                      i.icon-xlarge.icon-cog
+                      | 新增主題
+                  li.divider-vertical
+          .container-fluid
+            .row-fluid
+              .span12
+                - if flash.any?
+                  .c-alert.pillow-emboss
+                    - flash.each do |name, msg|
+                      div{class="alert-message #{name == :notice ? "info" : "error"}"}
+                        a.close data-dismiss="alert" &times;
+                        = simple_format(msg)
+                = yield
+      #leftcolumn
+        #leftpanel
+          .leftpanel-wrapper
+            ul.nav.nav-pills.nav-stacked
+              li.user-container
+                = link_to "主題列表", admin_projects_path
+    .clearfix
+    footer.footer
