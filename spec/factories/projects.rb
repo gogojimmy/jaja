@@ -3,6 +3,10 @@
 FactoryGirl.define do
   factory :project do
     user
-    name { Faker::Lorem.sentence }
+    sequence :name do |n|
+      "project#{n}"
+    end
+    description "blahblahblahblah"
+    is_publish false
   end
 end

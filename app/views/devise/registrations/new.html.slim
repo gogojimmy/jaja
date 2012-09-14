@@ -4,11 +4,11 @@ h2= t "devise.instructions.sign_up"
   = devise_error_messages!
 
   div
-    = f.input :email
-
+    = f.input :username, :label => "Username", :placeholder => "username"
+  div
+    = f.input :email, :label => "Email", :placeholder => "Emal"
   div
     = f.input :password
-
   div
     = f.input :password_confirmation, :label => t('devise.instructions.password_confirmation')
   div

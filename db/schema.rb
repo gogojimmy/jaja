@@ -15,11 +15,14 @@ ActiveRecord::Schema.define(:version => 20120911000132) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
+    t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "is_publish",  :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
+  add_index "projects", ["is_publish"], :name => "index_projects_on_is_publish"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "users", :force => true do |t|
