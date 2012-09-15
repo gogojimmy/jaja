@@ -65,10 +65,10 @@ Jaja::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => 'http://staging.babysworld.tw' }
+  config.action_mailer.default_url_options = { :host => 'http://jaja.gogojimmy.net' }
 end
 
-Startup::Application.config.middleware.use ExceptionNotifier,
+Jaja::Application.config.middleware.use ExceptionNotifier,
   :email_prefix => "[Exception Notifier - Staging] ",
-  :sender_address => %{"notifier" <admin@example.com>},
+  :sender_address => %{"notifier" <jimmy@gogojimmy.net>},
   :exception_recipients => %w{jimmy@gogojimmy.net}
