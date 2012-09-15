@@ -5,5 +5,11 @@
         .navbar-inner
           .container style="width: auto;"
             a.brand href="#" #{@project.name}
+            ul.nav.pull-right
+              li.divider-vertical
+              li= link_to "編輯", edit_admin_project_path(@project)
+              li.divider-vertical
+              li= link_to "顯示文章", project_path(@project), :target => "_blank"
+              li.divider-vertical
       #project
-        = simple_format @project.description
+        = markdown_parse @project.description

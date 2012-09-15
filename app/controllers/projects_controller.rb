@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.publisehd.find(params[:id])
+    redirect_to projects_path unless @project
   end
 end
