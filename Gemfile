@@ -13,7 +13,6 @@ gem 'simple_form'
 gem 'exception_notification'
 gem 'redcarpet'
 gem 'pygments.rb'
-gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.

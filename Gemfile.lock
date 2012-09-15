@@ -232,7 +232,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   mysql2
-  nokogiri
   pygments.rb
   rails (= 3.2.6)
   redcarpet

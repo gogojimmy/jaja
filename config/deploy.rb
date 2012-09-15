@@ -2,7 +2,6 @@ require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 require 'capistrano_colors'
 require "rvm/capistrano"
-require "delayed/recipes"
 
 set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
 set :rvm_install_type, :stable
