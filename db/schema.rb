@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20120911000132) do
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
-    t.integer  "is_publish",  :default => 0
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.boolean  "is_publish",  :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "projects", ["is_publish"], :name => "index_projects_on_is_publish"

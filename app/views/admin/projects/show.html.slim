@@ -1,0 +1,9 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container style="width: auto;"
+            a.brand href="#" #{@project.name}
+      #project
+        = simple_format @project.description

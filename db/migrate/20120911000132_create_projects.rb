@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :user_id
-      t.integer :is_publish, :default => false
+      t.boolean :is_publish, :default => false
 
       t.timestamps
     end

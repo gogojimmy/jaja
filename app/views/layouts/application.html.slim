@@ -16,7 +16,7 @@ head
             - @all_projects.each do |project|
               li= link_to project.name, project_path(project)
     section.container
-      article.row
+      article
         - flash.each do |name, msg|
           div{class="alert alert-#{name == :notice ? "success" : "error"}"}
             a.close data-dismiss="alert" &times;
