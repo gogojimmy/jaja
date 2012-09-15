@@ -7,7 +7,7 @@ require "delayed/recipes"
 set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
 set :rvm_install_type, :stable
 
-set :application, "babysworld"
+set :application, "jaja"
 set :repository,  "git@github.com:gogojimmy/jaja.git"
 
 set :scm, :git
