@@ -29,7 +29,8 @@ head
                   .c-alert.pillow-emboss
                     - flash.each do |name, msg|
                       div{class="alert-message #{name == :notice ? "info" : "error"}"}
-                        a.close data-dismiss="alert" &times;
+                        a.close href="#"
+                          i.icon-large.icon-remove-circle
                         = simple_format(msg)
                 = yield
       #leftcolumn
