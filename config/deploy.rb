@@ -1,36 +1,43 @@
 require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 require 'capistrano_colors'
-require "delayed/recipes"
-#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
+require "delayed/recipes"
 
-set :rvm_ruby_string, 'ruby-1.9.3-p125'
+set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
+set :rvm_install_type, :stable
 
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "babysworld"
+set :repository,  "git@github.com:gogojimmy/jaja.git"
 
 set :scm, :git
 set :scm_verbose, true
 set :use_sudo, false
 
 set :stages, %(staging production)
-set :default_stage, "staging"
+set :default_stage, "production"
 #set :rails_env, "production" #added for delayed job
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
+  task :start, :roles => :app do
+	  run "cd #{current_path};passenger start -a 127.0.0.1 -p 3001 -d -e production"  # In case of Phunsion Passenger standalone
+	end
+
+	task :stop, :roles => :app do
+	  run "kill -QUIT `cat #{current_path}/tmp/pids/passenger.3001.pid`"
+	end
+
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "kill -USR2 `cat #{current_path}/tmp/pids/passenger.3001.pid`"
   end
 
   task :custom_setup, :roles => [:app] do
     run "cp #{shared_path}/config/*.yml #{release_path}/config/"
   end
+
 
   desc "reload the database with seed data"
   task :seed do
@@ -40,11 +47,10 @@ namespace :deploy do
     run "cd #{current_path}; rake db:reset RAILS_ENV=#{rails_env}"
   end
 
-  task :copy_old_sitemap do
-    run "if [ -e #{previous_release}/public/sitemap_index.xml.gz ]; then cp #{previous_release}/public/sitemap* #{current_release}/public/; fi"
-  end
-
   namespace :assets do
+    #task :precompile, :role => :app do
+      #run "cd #{release_path}/ && RAILS_ENV=staging bundle exec rake assets:precompile --trace"
+    #end
     task :precompile, :roles => :web, :except => { :no_release => true } do
       from = source.next_revision(current_revision)
       if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
@@ -101,13 +107,13 @@ task :refresh_sitemaps do
 end
 
 before "deploy:assets:precompile", "deploy:custom_setup"
-before 'deploy:setup', 'rvm:install_rvm'
+# Install RVM
+before 'deploy',         'rvm:install_rvm'
+# Install Ruby
+before 'deploy',         'rvm:install_ruby'
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
-after "deploy:migrations", "deploy:generate_yard"
 after "mysql:sync", "mysql:backup", "mysql:import"
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
-after "deploy:update_code", "deploy:copy_old_sitemap"
-after "deploy", "refresh_sitemaps"

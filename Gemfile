@@ -10,8 +10,10 @@ gem 'devise'
 gem 'will_paginate'
 gem 'slim'
 gem 'simple_form'
-gem 'omniauth-facebook'
 gem 'exception_notification'
+gem 'redcarpet'
+gem 'pygments.rb'
+gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,7 +33,6 @@ gem 'capistrano_colors'
 gem 'rvm-capistrano'
 
 group :developement, :test do
-  gem "faker"
   gem "shoulda-matchers"
   gem "rspec-rails"
   gem "factory_girl_rails"
