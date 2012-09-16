@@ -2,11 +2,13 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.paginate(:page => params[:page])
+    @projects = Project.published.paginate(:page => params[:page])
   end
 
   def show
-    @project = Project.publisehd.find(params[:id])
-    redirect_to projects_path unless @project
+    @project = Project.published.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "您要找的頁面並不存在"
+    redirect_to "/"
   end
 end
