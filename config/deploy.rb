@@ -21,16 +21,10 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 namespace :deploy do
-  task :start, :roles => :app do
-	  run "cd #{current_path};passenger start -a 127.0.0.1 -p 3001 -d -e production"  # In case of Phunsion Passenger standalone
-	end
-
-	task :stop, :roles => :app do
-	  run "kill -QUIT `cat #{current_path}/tmp/pids/passenger.3001.pid`"
-	end
-
+  task :start do ; end
+  task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "kill -USR2 `cat #{current_path}/tmp/pids/passenger.3001.pid`"
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
   task :custom_setup, :roles => [:app] do
