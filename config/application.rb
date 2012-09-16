@@ -48,6 +48,7 @@ module Jaja
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
+
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
@@ -69,6 +70,13 @@ module Jaja
 
     # Slim
     Slim::Engine.set_default_options :pretty => true
+
+    $EMAIL_CONFIG = ActiveSupport::HashWithIndifferentAccess.new YAML.load(File.open("#{Rails.root}/config/email.yml"))[Rails.env]
+
+    config.action_mailer.default_url_options = { :host => $EMAIL_CONFIG[:host] }
+
+    # convert hash's keys from string to symbol, or it would raise error
+    config.action_mailer.smtp_settings = $EMAIL_CONFIG[:smtp].symbolize_keys if !$EMAIL_CONFIG[:smtp].nil?
 
     config.generators do |g|
       g.stylesheets false

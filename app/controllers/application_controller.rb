@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :find_projects
-  before_filter :authenticate
+  before_filter :authenticate if Rails.env.production?
 
   protected
 
