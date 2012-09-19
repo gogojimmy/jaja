@@ -8,13 +8,15 @@ head
   meta name="viewport" content="width=device-width" initial-scale="1.0"
   meta charset="UTF-8"
   body
-    nav.navbar.navbar-fixed-top
+    nav.navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
           a.brand JaJa
           ul.nav
             - @all_projects.each do |project|
               li= link_to project.name, project_path(project)
+          ul.nav.pull-right
+            li= link_to "管理者後台", admin_projects_path, target: "_blank"
     section.container
       article
         - flash.each do |name, msg|
