@@ -19,7 +19,7 @@ gem 'pygments.rb'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.0.4.0'
+  gem 'bootstrap-sass', '~> 2.1.0.0'
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
   gem 'bootswatch-rails'
@@ -31,12 +31,14 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'capistrano_colors'
 gem 'rvm-capistrano'
+gem 'nokogiri'
 
 group :developement, :test do
   gem "shoulda-matchers"
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "guard-rspec"
+  gem "awesome_print"
 end
 
 group :test do
