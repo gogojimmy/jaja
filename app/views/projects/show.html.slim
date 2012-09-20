@@ -1,4 +1,12 @@
-header.subhead#overview
-  h1= @project.name
-section#project-description
-  = markdown_parse @project.description
+.row
+  aside.sidebar.span3 data-spy="affix" data-offset-top="150"
+    = render partial: "shared/aside", locals: { subject: @project }
+  .span9
+    header.subhead#overview
+      h1= @project.name
+    section#project-description
+      = Markdown.parse @project.description
+    section#articles
+      ul.un-styled
+        - @project.articles.published.each do |article|
+          li= link_to article.title, project_article_path(project, article)

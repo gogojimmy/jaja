@@ -1,0 +1,16 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container
+            a.brand href="#" #{@article.title}
+            ul.nav.pull-right
+              li.divider-vertical
+              li= link_to "編輯", edit_admin_project_article_path(@article.project, @article)
+              li.divider-vertical
+              li= link_to "顯示文章", project_article_path(@article.project, @article), :target => "_blank"
+              li.divider-vertical
+      #article
+        span 發佈狀態：#{@article.is_publish?}
+        = Markdown.parse @article.content

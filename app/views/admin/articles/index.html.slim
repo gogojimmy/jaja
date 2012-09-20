@@ -1,0 +1,36 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container
+            a.brand href="#" 文章列表
+      #articles_wrapper
+        table.table.table-striped.table-bordered.table-condensed
+          thead
+            tr
+              th ID
+              th 主題
+              th 標題
+              th 公開狀態
+              th 建立時間
+              th 編輯時間
+              th 操作
+          tbody
+            - @articles.each do |article|
+              tr
+                td= article.id
+                td= article.project.name
+                td= article.title
+                td= article.is_publish
+                td= l article.created_at, :format => :short
+                td= l article.updated_at, :format => :short
+                td
+                  = link_to project_article_path(article.project, article), :class => 'btn', :target => "_blank" do
+                    = content_tag(:i, '', :class => 'icon icon-eye-open')
+                    '  檢視
+                  |
+                  = link_to edit_admin_project_article_path(article.project, article), :class => 'btn' do
+                    = content_tag(:i, '', :class => 'icon icon-edit')
+                    '  編輯
+      = will_paginate @articles

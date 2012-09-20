@@ -31,4 +31,7 @@
                   = link_to edit_admin_project_path(project), :class => 'btn' do
                     = content_tag(:i, '', :class => 'icon icon-edit')
                     '  編輯
+                  = link_to new_admin_project_article_path(project), :class => 'btn' do
+                    = content_tag(:i, '', :class => 'icon icon-plus-sign')
+                    '  新增文章
       = will_paginate @projects

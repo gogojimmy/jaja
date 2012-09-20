@@ -1,0 +1,10 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container
+            a.brand href="#" 新增文章
+      #article_form
+        = simple_form_for @article, url: admin_project_articles_path(@project), html: { class: 'form-horizontal' } do |f|
+          = render :partial => 'form', locals: { f: f }
