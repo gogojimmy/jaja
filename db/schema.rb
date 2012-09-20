@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911000132) do
+ActiveRecord::Schema.define(:version => 20120920012450) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.text     "content",                       :null => false
+    t.string   "title",                         :null => false
+    t.boolean  "is_publish", :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "eng_title"
+  end
+
+  add_index "articles", ["eng_title"], :name => "index_articles_on_eng_title"
+  add_index "articles", ["is_publish"], :name => "index_articles_on_is_publish"
+  add_index "articles", ["project_id"], :name => "index_articles_on_project_id"
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -20,8 +36,10 @@ ActiveRecord::Schema.define(:version => 20120911000132) do
     t.boolean  "is_publish",  :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.string   "eng_title"
   end
 
+  add_index "projects", ["eng_title"], :name => "index_projects_on_eng_title"
   add_index "projects", ["is_publish"], :name => "index_projects_on_is_publish"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
