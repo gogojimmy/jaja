@@ -1,4 +1,5 @@
 = f.input :title, :label => "文章標題", :input_html => { :class => "span10" }
+= f.input :description, label: "文章描述", input_html: { class: "span10" }, hint: "為了 SEO，首段不要超過 100 個中文字為佳，其中要包含標題中所有的關鍵字"
 = f.input :content, :label => "內容", :input_html => { :class => "span10" }
 = f.input :is_publish, :as => :radio_buttons, :label => "是否公開", :item_wrapper_class => 'inline'
 .form-actions

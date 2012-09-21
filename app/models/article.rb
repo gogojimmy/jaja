@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :user_id, :project_id, :content, :title, :is_publish
+  attr_accessible :user_id, :project_id, :content, :title, :is_publish, :description
 
   belongs_to :user
   belongs_to :project

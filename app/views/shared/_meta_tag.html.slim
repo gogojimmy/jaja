@@ -1,0 +1,5 @@
+- set_meta_tags title: subject.name, description: subject.description
+- set_meta_tags open_graph: { title: subject.name,
+                              description: "Article",
+                              url: "#{request.protocol}#{request.host_with_port}#{request.fullpath}",
+                              image: "http://graph.facebook.com/1589145634/picture?type=large" }
