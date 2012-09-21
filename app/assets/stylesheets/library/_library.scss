@@ -5,3 +5,7 @@ $base-line-height: 30.6px;
 @include establish-baseline;
 
 body { padding-top: 50px; }
+
+.sidebar .nav {
+  width: 200px;
+}

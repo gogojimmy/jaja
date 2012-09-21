@@ -1,4 +1,4 @@
-ul.nav.nav-list
+ul.nav.nav-list data-spy="affix" data-offset-top="150"
   - subject.title_with_id.each do |t|
     li= link_to "##{t.first.first}" do
       | #{t.first.last}

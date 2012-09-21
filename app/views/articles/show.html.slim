@@ -1,8 +1,8 @@
 .row
-  aside.sidebar.span3 data-spy="affix" data-offset-top="150"
+  aside.sidebar.span3
     = render partial: "shared/aside", locals: { subject: @article }
   .span9
     header.subhead#article-title
       h1= @article.title
     section#article-content
-      = Markdown.parse @article.content
+    = Markdown.parse @article.content
