@@ -1,19 +1,20 @@
 DOCTYPE html
 html lang="zh"
 head
-  = display_meta_tags site: "Jaja"
+  = display_meta_tags site: "Jimmy 學習筆記"
   link href="https://plus.google.com/111185132903722481885/about" rel="author"
   /[ if lt IE 9 ]
     | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   = stylesheet_link_tag    "application"
   = javascript_include_tag "application"
+  = render partial: 'shared/google_analytics' if Rails.env.production?
   = csrf_meta_tags
   meta name="viewport" content="width=device-width" initial-scale="1.0"
   meta charset="UTF-8"
 body data-spy="scroll" data-target=".sidebar"
   .container
     header.role-header
-      h1=link_to '學習筆記', "/"
+      h1=link_to 'Jimmy 學習筆記', "/"
     / Navbar
     nav.navbar
       .navbar-inner
@@ -23,7 +24,7 @@ body data-spy="scroll" data-target=".sidebar"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href='/' 學習筆記
+          a.brand href='/' Jimmy 學習筆記
           .nav-collapse
             ul.nav
               - @all_projects.each do |project|
@@ -34,8 +35,9 @@ body data-spy="scroll" data-target=".sidebar"
                     ul.dropdown-menu role="menu" aria-labelledby="dLabel"
                       - project.articles.published.each do |article|
                         li= link_to article.title, project_article_path(project, article)
-            ul.nav.pull-right
-              li= link_to "管理者後台", admin_projects_path, target: "_blank"
+            - if current_user
+              ul.nav.pull-right
+                li= link_to "管理者後台", admin_projects_path, target: "_blank"
     .row
       .span9
         article
