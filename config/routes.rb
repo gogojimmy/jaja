@@ -12,6 +12,10 @@ Jaja::Application.routes.draw do
     resources :articles, only: [:show]
   end
 
+  resources :articles, only: [:index]
+
+  get 'tags/:tag', to: 'articles#index', as: :tag
+
   namespace :admin do
     resources :articles, only: [:index, :show]
     resources :projects do
