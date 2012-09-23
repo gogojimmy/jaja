@@ -12,4 +12,4 @@
               li= link_to "顯示文章", project_path(@project), :target => "_blank"
               li.divider-vertical
       #project
-        = markdown_parse @project.description
+        = Markdown.parse @project.description

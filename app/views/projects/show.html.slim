@@ -1,13 +1,30 @@
-= render partial: "shared/meta_tag", locals: { subject: @project }
-.row
-  aside.sidebar.span3 data-spy="affix" data-offset-top="150"
-    = render partial: "shared/aside", locals: { subject: @project }
-  .span9
-    header.subhead#overview
-      h1= @project.name
-    section#project-description
-      = Markdown.parse @project.description
-    section#articles
-      ul.un-styled
-        - @project.articles.published.each do |article|
-          li= link_to article.title, project_article_path(project, article)
+= render partial: "shared/meta_tag", locals: { title: @project.name, description: @project.description }
+
+- content_for(:aside) do
+  = render partial: 'shared/aside', locals: { subject: @project }
+
+header.page-header
+  h1 #{@project.name}
+section#project-description
+  = Markdown.parse @project.description
+section#articles
+  header.page-header
+    h1 #{@project.name} 的目錄
+  ul
+    - @project.articles.published.each do |article|
+      li
+        = link_to article.title, project_article_path(article.project, article), :class => 'hover-popover', "rel" => "popover", "data-trigger" => "hover", "data-content" => article.description, "data-title" => "摘要"
+        ul
+          - article.title_with_id.each do |t|
+            li= link_to t.first.last, "##{t.first.first}"
+blockquote
+  p
+    a href="http://gogojimmy.net" rel="author" gogojimmy
+    '
+    | 發表於:
+    | <time datetime=#{l @project.updated_at, :format => "%Y-%m-%d %H:%M:%S"} pubdate>#{l @project.updated_at, :format => :short}</time>
+hr
+- if Rails.env.production?
+  section#comments
+    #disqus_thread
+      = raw disqus_thread

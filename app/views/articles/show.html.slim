@@ -1,8 +1,14 @@
-.row
-  aside.sidebar.span3
-    = render partial: "shared/aside", locals: { subject: @article }
-  .span9
-    header.subhead#article-title
-      h1= @article.title
-    section#article-content
-    = Markdown.parse @article.content
+= render partial: "shared/meta_tag", locals: { title: @article.title, description: @article.description }
+
+- content_for(:aside) do
+  = render partial: "shared/aside", locals: { subject: @article }
+
+header.subhead#article-title
+  h1= @article.title
+section#article-content
+  = Markdown.parse @article.content
+hr
+- if Rails.env.production?
+  section#comments
+    #disqus_thread
+      = raw disqus_thread

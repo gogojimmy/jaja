@@ -14,6 +14,7 @@ gem 'exception_notification'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'meta-tags', :require => 'meta_tags'
+gem 'disqus'
 
 # Gems used only for assets and not required
 # in production environments by default.

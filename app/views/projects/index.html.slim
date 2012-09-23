@@ -1,0 +1,15 @@
+= render partial: "shared/meta_tag", locals: { title: "學習筆記", description: "分享學習過程中的心得" }
+
+- content_for(:aside) do
+  = render partial: 'shared/google_adsense'
+
+header.page-header.hidden-phone.hidden-tablet.hidden-desktop
+  h1 筆記列表
+- @all_projects.each do |project|
+  article
+    .well
+      header.hidden
+        h1= link_to project.name, project
+      span
+        | #{project.description[0..150] + "....."}
+        | #{link_to "查看主題", project_path(project)}

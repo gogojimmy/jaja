@@ -1,3 +1,3 @@
 jQuery ->
   $('.dropdown-toggle').dropdown()
-  #$('.affix').affix()
+  $(".hover-popover").popover trigger: 'hover'

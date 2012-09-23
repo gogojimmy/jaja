@@ -66,6 +66,14 @@ Jaja::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.action_mailer.default_url_options = { :host => 'http://jaja.gogojimmy.net' }
+
+  config.after_initialize do
+    Disqus::defaults[:account] = "gogojimmy"
+    # so that the comments will load up in development environment
+    Disqus::defaults[:developer] = true
+    Disqus::defaults[:container_id] = "disqus_thread"
+    Disqus::defaults[:show_powered_by] = false
+  end
 end
 
 Jaja::Application.config.middleware.use ExceptionNotifier,

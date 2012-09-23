@@ -1,5 +1,5 @@
 Jaja::Application.routes.draw do
-  root :to => "welcome#index"
+  root :to => "projects#index"
 
   devise_for :users, :skip => [:sessions, :registrations]
   as :user do

@@ -1,5 +1,6 @@
-ul.nav.nav-list data-spy="affix" data-offset-top="150"
+ul.nav.nav-list
   - subject.title_with_id.each do |t|
     li= link_to "##{t.first.first}" do
       | #{t.first.last}
       i.icon-chevron-right.pull-right
+= render partial: 'shared/google_adsense'
