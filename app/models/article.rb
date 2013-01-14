@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
-  attr_accessible :user_id, :project_id, :content, :title, :is_publish, :description
+  attr_accessible :user_id, :project_id, :content, :title, :is_publish, :description, :tag_list
+  acts_as_taggable
 
   belongs_to :user
   belongs_to :project

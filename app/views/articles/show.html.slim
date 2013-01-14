@@ -7,6 +7,8 @@ header.subhead#article-title
   h1= @article.title
 section#article-content
   = Markdown.parse @article.content
+section#tags
+  = raw @article.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
 hr
 - if Rails.env.production?
   section#comments
